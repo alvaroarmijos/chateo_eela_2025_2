@@ -1,3 +1,4 @@
+import 'package:chateo_eela_2025_2/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -51,6 +52,23 @@ class LoginPage extends StatelessWidget {
             style: TextStyle(color: Color(0xFF797C7B)),
             textAlign: TextAlign.center,
           ),
+          const SizedBox(height: 20),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 20,
+            children: [
+              SocialMediaButton(socialMediaType: SocialMediaType.facebook),
+              SocialMediaButton(socialMediaType: SocialMediaType.google),
+              SocialMediaButton(
+                socialMediaType: SocialMediaType.apple,
+                iconColor: Colors.black,
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+
+          OnboardingDivider(textColor: Colors.grey[700]),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 24),
             child: Row(
@@ -63,46 +81,14 @@ class LoginPage extends StatelessWidget {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
 
-            decoration: const InputDecoration(
-              label: Text('Your email'),
-              labelStyle: TextStyle(
-                color: Color(0xFF24786D),
-                fontWeight: FontWeight.normal,
-                fontSize: 14,
-              ),
-              border: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-              ),
-            ),
+            decoration: const InputDecoration(label: Text('Your email')),
           ),
           const SizedBox(height: 16),
           TextFormField(
             enabled: true,
             textInputAction: TextInputAction.done,
             obscureText: true,
-            decoration: const InputDecoration(
-              label: Text('Password'),
-              labelStyle: TextStyle(
-                color: Color(0xFF24786D),
-                fontWeight: FontWeight.normal,
-                fontSize: 14,
-              ),
-              border: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-              ),
-            ),
+            decoration: const InputDecoration(label: Text('Password')),
           ),
         ],
       ),

@@ -39,7 +39,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   style: textTheme.labelLarge?.copyWith(
                     decoration: TextDecoration.underline,
                     decorationThickness: 10,
-                    decorationColor: theme.colorScheme.primary.withOpacity(0.7),
+                    decorationColor: theme.colorScheme.primary.withValues(
+                      alpha: 0.5,
+                    ),
                   ),
                 ),
               ],

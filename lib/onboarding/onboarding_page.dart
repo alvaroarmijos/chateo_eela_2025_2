@@ -1,3 +1,4 @@
+import 'package:chateo_eela_2025_2/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -37,29 +38,19 @@ class OnboardingPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     spacing: 20,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          print('Login with Facebook');
-                        },
-                        child: Image.asset('assets/icons/icon_facebook.png'),
+                      // SocialMediaButton.facebook(),
+                      // SocialMediaButton.google(),
+                      // SocialMediaButton.apple(),
+                      SocialMediaButton(
+                        socialMediaType: SocialMediaType.facebook,
                       ),
-                      Image.asset('assets/icons/icon_google.png'),
-                      Image.asset('assets/icons/icon_apple.png'),
+                      SocialMediaButton(
+                        socialMediaType: SocialMediaType.google,
+                      ),
+                      SocialMediaButton(socialMediaType: SocialMediaType.apple),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Expanded(child: Divider(color: Colors.grey)),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
-                          'OR',
-                          style: TextStyle(color: Colors.white, fontSize: 14),
-                        ),
-                      ),
-                      Expanded(child: Divider(color: Colors.grey)),
-                    ],
-                  ),
+                  OnboardingDivider(),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
