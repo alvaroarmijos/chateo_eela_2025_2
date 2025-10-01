@@ -1,3 +1,4 @@
+import 'package:chateo_eela_2025_2/app/core/ui/ui.dart';
 import 'package:flutter/material.dart';
 
 // class SocialMediaButton extends StatelessWidget {
@@ -49,9 +50,9 @@ class SocialMediaButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconPath = switch (socialMediaType) {
-      SocialMediaType.facebook => 'assets/icons/icon_facebook.png',
-      SocialMediaType.google => 'assets/icons/icon_google.png',
-      SocialMediaType.apple => 'assets/icons/icon_apple.png',
+      SocialMediaType.facebook => AppDrawables.facebookIcon,
+      SocialMediaType.google => AppDrawables.googleIcon,
+      SocialMediaType.apple => AppDrawables.appleIcon,
     };
 
     return Container(

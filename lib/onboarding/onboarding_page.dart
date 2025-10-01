@@ -1,4 +1,5 @@
-import 'package:chateo_eela_2025_2/widgets/widgets.dart';
+import 'package:chateo_eela_2025_2/app/core/ui/ui.dart';
+import 'package:chateo_eela_2025_2/app/core/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -11,7 +12,7 @@ class OnboardingPage extends StatelessWidget {
       body: Stack(
         children: [
           Image.asset(
-            'assets/images/background.png',
+            AppDrawables.background,
             width: double.infinity,
             fit: BoxFit.cover,
           ),
@@ -21,7 +22,7 @@ class OnboardingPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset('assets/icons/icon_app.png'),
+                  Image.asset(AppDrawables.appIcon),
                   Text(
                     'Connect friends easily & quickly',
                     style: TextStyle(
@@ -61,12 +62,24 @@ class OnboardingPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(16),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => SignUpPage()),
+                        // );
+                        Navigator.pushNamed(context, AppNavigator.signUp);
+                      },
                       child: Text('Sign up withn mail'),
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => LoginPage()),
+                      // );
+                      Navigator.pushNamed(context, AppNavigator.login);
+                    },
                     child: RichText(
                       text: TextSpan(
                         text: 'Existing account? ',

@@ -1,4 +1,4 @@
-import 'package:chateo_eela_2025_2/widgets/widgets.dart';
+import 'package:chateo_eela_2025_2/app/core/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,22 +9,6 @@ class LoginPage extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
-    final inputTheme = InputDecorationTheme(
-      labelStyle: TextStyle(
-        color: Color(0xFF24786D),
-        fontWeight: FontWeight.normal,
-        fontSize: 14,
-      ),
-      border: UnderlineInputBorder(
-        borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-      ),
-      enabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-      ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-      ),
-    );
 
     return Scaffold(
       appBar: AppBar(),
@@ -80,7 +64,6 @@ class LoginPage extends StatelessWidget {
           TextFormField(
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
-
             decoration: const InputDecoration(label: Text('Your email')),
           ),
           const SizedBox(height: 16),
