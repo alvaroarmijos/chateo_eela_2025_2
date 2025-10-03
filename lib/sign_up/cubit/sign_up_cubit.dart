@@ -1,9 +1,12 @@
+import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository_firebase_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpState());
+
+  final authRepository = AuthRepositoryFirebaseImpl();
 
   void onNameChanged(String? name) {
     emit(state.copyWith(name: name));
@@ -22,9 +25,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   void createAccount() {
-    print('name: ${state.name}');
-    print('email: ${state.email}');
-    print('password: ${state.password}');
-    print('confirmPassword: ${state.confirmPassword}');
+    final (name, email, password) = (state.name, state.email, state.password);
+    if (name == null || email == null || password == null) return;
+    authRepository.signUp(name, email, password);
   }
 }

@@ -130,7 +130,9 @@ class _SignUpPageViewState extends State<SignUpPageView> {
         ).copyWith(bottom: 32 + keyboardHeight),
         child: ElevatedButton(
           onPressed: () {
-            final isValid = formKey.currentState?.validate();
+            final isValid = formKey.currentState?.validate() ?? false;
+
+            if (!isValid) return;
             signUpCubit.createAccount();
           },
           child: const Text('Create an account'),

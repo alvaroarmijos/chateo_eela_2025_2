@@ -1,11 +1,17 @@
 import 'package:chateo_eela_2025_2/app/core/ui/app_navigator.dart';
 import 'package:chateo_eela_2025_2/app/core/ui/theme.dart';
+import 'package:chateo_eela_2025_2/firebase_options.dart';
 import 'package:chateo_eela_2025_2/login/view/login_page.dart';
 import 'package:chateo_eela_2025_2/onboarding/onboarding_page.dart';
 import 'package:chateo_eela_2025_2/sign_up/sign_up_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
