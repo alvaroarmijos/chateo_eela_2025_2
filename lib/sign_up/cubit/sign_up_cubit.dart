@@ -1,4 +1,5 @@
 import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository_firebase_impl.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'sign_up_state.dart';
@@ -24,9 +25,48 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(state.copyWith(confirmPassword: confirmPassword));
   }
 
-  void createAccount() {
+  void createAccount() async {
     final (name, email, password) = (state.name, state.email, state.password);
     if (name == null || email == null || password == null) return;
-    authRepository.signUp(name, email, password);
+    try {
+      emit(state.copyWith(status: Status.loading));
+      await authRepository.signUp(name, email, password);
+      emit(state.copyWith(status: Status.success));
+    } on FirebaseAuthException catch (error) {
+      switch (error.code) {
+        case 'email-already-in-use':
+          emit(
+            state.copyWith(
+              status: Status.emailAlreadyRegistered,
+              message: error.message,
+            ),
+          );
+          break;
+        case 'weak-password':
+          emit(
+            state.copyWith(
+              status: Status.passwordTooWeek,
+              message: error.message,
+            ),
+          );
+          break;
+        default:
+          emit(
+            state.copyWith(
+              status: Status.failed,
+              message: 'Firebase exception. Try again',
+            ),
+          );
+      }
+    } catch (error) {
+      emit(
+        state.copyWith(
+          status: Status.failed,
+          message: 'Network exception. Try again',
+        ),
+      );
+    } finally {
+      emit(state.copyWith(status: Status.initial));
+    }
   }
 }
