@@ -41,11 +41,13 @@ class SocialMediaButton extends StatelessWidget {
     required this.socialMediaType,
     this.color = Colors.grey,
     this.iconColor,
+    this.onTap,
   });
 
   final SocialMediaType socialMediaType;
   final Color color;
   final Color? iconColor;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +57,16 @@ class SocialMediaButton extends StatelessWidget {
       SocialMediaType.apple => AppDrawables.appleIcon,
     };
 
-    return Container(
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: color),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: color),
+        ),
+        child: Image.asset(iconPath, color: iconColor),
       ),
-      child: Image.asset(iconPath, color: iconColor),
     );
   }
 }

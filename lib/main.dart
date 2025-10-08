@@ -6,10 +6,12 @@ import 'package:chateo_eela_2025_2/onboarding/onboarding_page.dart';
 import 'package:chateo_eela_2025_2/sign_up/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await GoogleSignIn.instance.initialize();
   runApp(const MyApp());
 }
 

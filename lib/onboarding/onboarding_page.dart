@@ -1,9 +1,23 @@
 import 'package:chateo_eela_2025_2/app/core/ui/ui.dart';
 import 'package:chateo_eela_2025_2/app/core/widgets/widgets.dart';
+import 'package:chateo_eela_2025_2/onboarding/cubit/onboarding_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => OnboardingCubit(),
+      child: OnboardingPageView(),
+    );
+  }
+}
+
+class OnboardingPageView extends StatelessWidget {
+  const OnboardingPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +61,9 @@ class OnboardingPage extends StatelessWidget {
                       ),
                       SocialMediaButton(
                         socialMediaType: SocialMediaType.google,
+                        onTap: () {
+                          context.read<OnboardingCubit>().signInWithGoogle();
+                        },
                       ),
                       SocialMediaButton(socialMediaType: SocialMediaType.apple),
                     ],
