@@ -1,12 +1,17 @@
+import 'package:chateo_eela_2025_2/app/auth/view/auth_handler.dart';
 import 'package:chateo_eela_2025_2/app/core/ui/app_navigator.dart';
 import 'package:chateo_eela_2025_2/app/core/ui/theme.dart';
 import 'package:chateo_eela_2025_2/firebase_options.dart';
+import 'package:chateo_eela_2025_2/home/view/home_page.dart';
 import 'package:chateo_eela_2025_2/login/view/login_page.dart';
 import 'package:chateo_eela_2025_2/onboarding/onboarding_page.dart';
+import 'package:chateo_eela_2025_2/root/view/root_page.dart';
 import 'package:chateo_eela_2025_2/sign_up/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,14 +25,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppTheme.light,
-      title: 'Material App',
-      routes: {
-        AppNavigator.main: (context) => OnboardingPage(),
-        AppNavigator.login: (context) => LoginPage(),
-        AppNavigator.signUp: (context) => SignUpPage(),
-      },
+    return AuthHandler(
+      navigatorKey: navigatorKey,
+      child: MaterialApp(
+        navigatorKey: navigatorKey,
+        theme: AppTheme.light,
+        title: 'Material App',
+        routes: {
+          AppNavigator.main: (context) => RootPage(),
+          AppNavigator.onboarding: (context) => OnboardingPage(),
+          AppNavigator.login: (context) => LoginPage(),
+          AppNavigator.signUp: (context) => SignUpPage(),
+          AppNavigator.home: (context) => HomePage(),
+        },
+      ),
     );
   }
 }

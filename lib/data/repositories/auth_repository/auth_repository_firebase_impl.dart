@@ -37,4 +37,12 @@ class AuthRepositoryFirebaseImpl extends AuthRepository {
 
   @override
   Stream<User?> get currentUser => FirebaseAuth.instance.authStateChanges();
+
+  @override
+  Future<void> logOut() {
+    return Future.wait([
+      GoogleSignIn.instance.signOut(),
+      FirebaseAuth.instance.signOut(),
+    ]);
+  }
 }

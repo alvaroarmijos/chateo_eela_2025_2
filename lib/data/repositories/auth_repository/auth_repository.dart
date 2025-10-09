@@ -15,4 +15,7 @@ abstract class AuthRepository {
 
   // Stream para obtener el usuario logueado actualmente
   Stream<User?> get currentUser;
+
+  // Cerrar sesion
+  Future<void> logOut();
 }
