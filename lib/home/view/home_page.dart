@@ -1,20 +1,28 @@
+import 'package:chateo_eela_2025_2/home/bloc/home_bloc.dart';
 import 'package:chateo_eela_2025_2/home/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => HomeBloc()..add(GetContactsEvent()),
+      child: const HomePageView(),
+    );
+  }
+}
+
+class HomePageView extends StatelessWidget {
+  const HomePageView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       backgroundColor: Colors.black,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.black,
-      //   title: Text('Home'),
-      //   leading: Icon(Icons.navigate_next),
-      //   actions: [CircleAvatar()],
-      // ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
