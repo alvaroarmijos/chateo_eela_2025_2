@@ -1,5 +1,6 @@
 import 'package:chateo_eela_2025_2/data/repositories/contacts_repository/contacts_repository.dart';
 import 'package:chateo_eela_2025_2/domain/models/contact.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class ContactsRepositoryFirebaseImpl extends ContactsRepository {
@@ -17,6 +18,16 @@ class ContactsRepositoryFirebaseImpl extends ContactsRepository {
             );
           }).toList() ??
           [];
+    });
+  }
+
+  @override
+  Future<void> updateUserStatus(User user, bool status) {
+    return _firebaseDatabase.ref('status').child(user.uid).update({
+      'name': user.displayName,
+      'status': status,
+      'photoUrl': user.photoURL,
+      'userId': user.uid,
     });
   }
 }

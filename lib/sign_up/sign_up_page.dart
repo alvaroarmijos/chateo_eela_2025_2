@@ -35,7 +35,6 @@ class _SignUpPageViewState extends State<SignUpPageView> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
-    final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     final signUpCubit = context.read<SignUpCubit>();
     final formKey = GlobalKey<FormState>();
 
@@ -146,7 +145,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
             return Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
-              ).copyWith(bottom: 32 + keyboardHeight),
+              ).copyWith(bottom: 32),
               child: ElevatedButton(
                 onPressed: state.status == Status.loading
                     ? null

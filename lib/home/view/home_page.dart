@@ -1,3 +1,5 @@
+import 'package:chateo_eela_2025_2/app/auth/bloc/auth_bloc.dart';
+import 'package:chateo_eela_2025_2/app/core/widgets/chat_avatar.dart';
 import 'package:chateo_eela_2025_2/home/bloc/home_bloc.dart';
 import 'package:chateo_eela_2025_2/home/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +17,29 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HomePageView extends StatelessWidget {
+class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
+
+  @override
+  State<HomePageView> createState() => _HomePageViewState();
+}
+
+class _HomePageViewState extends State<HomePageView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeBloc>().add(UpdateUserStatusEvent(status: true));
+  }
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final authState = context.read<AuthBloc>().state;
+    final user = switch (authState) {
+      AuthStateLoggedIn() => authState.user,
+      _ => null,
+    };
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
@@ -38,10 +57,9 @@ class HomePageView extends StatelessWidget {
                   'Home',
                   style: textTheme.titleLarge?.copyWith(color: Colors.white),
                 ),
-                const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    'https://photo-cdn2.icons8.com/OCUxgrB3qzbk934tC2nTmEl7VlvF-7f3LJ1fQ9HFuZA/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5l/eHRlcm5hbC9hMmE0/Mi82ODE1ODM3MTQ5/YTI0ZmE2YmEzYzBm/Njg0MDMyZjJlMy5q/cGc.webp',
-                  ),
+                ChatAvatar(
+                  name: user?.displayName ?? '',
+                  photoUrl: user?.photoURL,
                 ),
               ],
             ),

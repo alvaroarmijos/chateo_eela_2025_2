@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 Contact contactFromJson(String str) => Contact.fromJson(json.decode(str));
 
 String contactToJson(Contact data) => json.encode(data.toJson());
@@ -26,4 +28,9 @@ class Contact {
     "photoUrl": photoUrl,
     "status": status,
   };
+
+  String get statusDetail => status ? 'Online' : 'Offline';
+
+  /// Returns the color status. If [true] return green, in other case returns red
+  Color get statusColor => status ? Colors.green : Colors.red;
 }
