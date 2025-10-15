@@ -14,19 +14,27 @@ class Contact {
   final String name;
   final String? photoUrl;
   final bool status;
+  final String id;
 
-  Contact({required this.name, this.photoUrl, required this.status});
+  Contact({
+    required this.name,
+    this.photoUrl,
+    required this.status,
+    required this.id,
+  });
 
   factory Contact.fromJson(Map<String, dynamic> json) => Contact(
     name: json["name"],
     photoUrl: json["photoUrl"],
     status: json["status"],
+    id: json["id"],
   );
 
   Map<String, dynamic> toJson() => {
     "name": name,
     "photoUrl": photoUrl,
     "status": status,
+    "id": id,
   };
 
   String get statusDetail => status ? 'Online' : 'Offline';

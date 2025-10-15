@@ -33,7 +33,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     UpdateUserStatusEvent event,
     Emitter<HomeState> emit,
   ) async {
-    final user = await _authRepository.currentUser.first;
+    final user = await _authRepository.user;
     if (user == null) return;
     _contactsRepository.updateUserStatus(user, event.status);
   }

@@ -1,4 +1,5 @@
 import 'package:chateo_eela_2025_2/app/auth/bloc/auth_bloc.dart';
+import 'package:chateo_eela_2025_2/app/core/ui/ui.dart';
 import 'package:chateo_eela_2025_2/app/core/widgets/chat_avatar.dart';
 import 'package:chateo_eela_2025_2/home/bloc/home_bloc.dart';
 import 'package:chateo_eela_2025_2/home/widgets/widgets.dart';
@@ -57,9 +58,13 @@ class _HomePageViewState extends State<HomePageView> {
                   'Home',
                   style: textTheme.titleLarge?.copyWith(color: Colors.white),
                 ),
-                ChatAvatar(
-                  name: user?.displayName ?? '',
-                  photoUrl: user?.photoURL,
+                GestureDetector(
+                  onTap: () =>
+                      Navigator.pushNamed(context, AppNavigator.profile),
+                  child: ChatAvatar(
+                    name: user?.displayName ?? '',
+                    photoUrl: user?.photoURL,
+                  ),
                 ),
               ],
             ),

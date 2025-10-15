@@ -4,4 +4,6 @@ class AppNavigator {
   static const login = '/login';
   static const signUp = '/sign-up';
   static const home = '/home';
+  static const profile = '/profile';
+  static const chat = '/chat';
 }

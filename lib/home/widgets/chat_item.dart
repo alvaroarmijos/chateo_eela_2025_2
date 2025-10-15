@@ -1,4 +1,4 @@
-import 'package:chateo_eela_2025_2/app/core/ui/app_colors.dart';
+import 'package:chateo_eela_2025_2/app/core/ui/ui.dart';
 import 'package:chateo_eela_2025_2/app/core/widgets/widgets.dart';
 import 'package:chateo_eela_2025_2/domain/models/contact.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,8 @@ class ChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => {},
+      onTap: () =>
+          Navigator.pushNamed(context, AppNavigator.chat, arguments: contact),
       leading: ChatAvatar(name: contact.name, photoUrl: contact.photoUrl),
       title: Text(contact.name),
       subtitle: Text(
