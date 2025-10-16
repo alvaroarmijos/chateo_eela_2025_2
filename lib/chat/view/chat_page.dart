@@ -1,5 +1,8 @@
+import 'package:chateo_eela_2025_2/app/di/di.dart';
 import 'package:chateo_eela_2025_2/chat/bloc/chat_bloc.dart';
 import 'package:chateo_eela_2025_2/chat/widgets/widgets.dart';
+import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository.dart';
+import 'package:chateo_eela_2025_2/data/repositories/messages_repository/messages_repository.dart';
 import 'package:chateo_eela_2025_2/domain/models/contact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,8 +16,10 @@ class ChatPage extends StatelessWidget {
     final contact = ModalRoute.of(context)!.settings.arguments as Contact;
 
     return BlocProvider(
-      create: (context) =>
-          ChatBloc()..add(GetMessagesEvent(contactId: contact.id)),
+      create: (context) => ChatBloc(
+        authRepository: getIt<AuthRepository>(),
+        messagesRepository: getIt<MessagesRepository>(),
+      )..add(GetMessagesEvent(contactId: contact.id)),
       child: ChatPageView(contact: contact),
     );
   }

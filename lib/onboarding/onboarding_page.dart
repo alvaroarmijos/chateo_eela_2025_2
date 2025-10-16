@@ -1,5 +1,7 @@
 import 'package:chateo_eela_2025_2/app/core/ui/ui.dart';
 import 'package:chateo_eela_2025_2/app/core/widgets/widgets.dart';
+import 'package:chateo_eela_2025_2/app/di/di.dart';
+import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository.dart';
 import 'package:chateo_eela_2025_2/onboarding/cubit/onboarding_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +12,8 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => OnboardingCubit(),
+      create: (context) =>
+          OnboardingCubit(authRepository: getIt<AuthRepository>()),
       child: OnboardingPageView(),
     );
   }

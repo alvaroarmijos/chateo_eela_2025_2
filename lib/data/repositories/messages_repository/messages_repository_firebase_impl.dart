@@ -23,7 +23,8 @@ class MessagesRepositoryFirebaseImpl extends MessagesRepository {
   Stream<List<Message>> getMessages(String chatId) {
     return _firebaseDatabase.ref('chats').child(chatId).onValue.map((event) {
       final value = event.snapshot.value as Map?;
-      return value?.values.map((element) {
+      final messages =
+          value?.values.map((element) {
             return Message(
               message: element['message'],
               messageDate: DateTime.parse(element["messageDate"]),
@@ -31,6 +32,8 @@ class MessagesRepositoryFirebaseImpl extends MessagesRepository {
             );
           }).toList() ??
           [];
+
+      return messages..sort((a, b) => a.messageDate.compareTo(b.messageDate));
     });
   }
 }

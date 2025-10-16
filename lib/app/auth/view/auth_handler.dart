@@ -1,5 +1,7 @@
 import 'package:chateo_eela_2025_2/app/auth/bloc/auth_bloc.dart';
 import 'package:chateo_eela_2025_2/app/core/ui/app_navigator.dart';
+import 'package:chateo_eela_2025_2/app/di/di.dart';
+import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +18,9 @@ class AuthHandler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthBloc()..add(CheckUserEvent()),
+      create: (context) =>
+          AuthBloc(authRepository: getIt<AuthRepository>())
+            ..add(CheckUserEvent()),
       child: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           switch (state) {

@@ -1,13 +1,13 @@
-import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository_firebase_impl.dart';
+import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  SignUpCubit() : super(SignUpState());
+  SignUpCubit({required this.authRepository}) : super(SignUpState());
 
-  final authRepository = AuthRepositoryFirebaseImpl();
+  final AuthRepository authRepository;
 
   void onNameChanged(String? name) {
     emit(state.copyWith(name: name));

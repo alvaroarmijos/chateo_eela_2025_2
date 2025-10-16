@@ -38,6 +38,7 @@ class AuthRepositoryFirebaseImpl extends AuthRepository {
   @override
   Stream<User?> get currentUser => FirebaseAuth.instance.authStateChanges();
 
+  @override
   Future<User?> get user => currentUser.first;
 
   @override

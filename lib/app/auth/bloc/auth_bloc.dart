@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository_firebase_impl.dart';
+import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthStateLoading()) {
+  AuthBloc({required this.authRepository}) : super(AuthStateLoading()) {
     on<CheckUserEvent>(_onCheckUserEvent);
   }
 
-  final authRepository = AuthRepositoryFirebaseImpl();
+  final AuthRepository authRepository;
 
   FutureOr<void> _onCheckUserEvent(
     CheckUserEvent event,

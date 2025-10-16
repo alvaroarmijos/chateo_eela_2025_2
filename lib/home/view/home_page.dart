@@ -1,6 +1,9 @@
 import 'package:chateo_eela_2025_2/app/auth/bloc/auth_bloc.dart';
 import 'package:chateo_eela_2025_2/app/core/ui/ui.dart';
 import 'package:chateo_eela_2025_2/app/core/widgets/chat_avatar.dart';
+import 'package:chateo_eela_2025_2/app/di/di.dart';
+import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository.dart';
+import 'package:chateo_eela_2025_2/data/repositories/contacts_repository/contacts_repository.dart';
 import 'package:chateo_eela_2025_2/home/bloc/home_bloc.dart';
 import 'package:chateo_eela_2025_2/home/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +15,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeBloc()..add(GetContactsEvent()),
+      create: (context) => HomeBloc(
+        contactsRepository: getIt<ContactsRepository>(),
+        authRepository: getIt<AuthRepository>(),
+      )..add(GetContactsEvent()),
       child: const HomePageView(),
     );
   }

@@ -17,9 +17,11 @@ class _ChatTextFormFieldState extends State<ChatTextFormField> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = ColorScheme.of(context);
     return Align(
       alignment: Alignment.bottomCenter,
-      child: SizedBox(
+      child: Container(
+        color: colorScheme.surface,
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(12).copyWith(bottom: 20),
@@ -57,6 +59,7 @@ class _ChatTextFormFieldState extends State<ChatTextFormField> {
               FloatingActionButton.small(
                 onPressed: () {
                   final message = _messageController.text.trim();
+                  if (message.isEmpty) return;
                   context.read<ChatBloc>().add(
                     SendMessageEvent(
                       message: message,
