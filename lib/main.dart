@@ -2,6 +2,7 @@ import 'package:chateo_eela_2025_2/app/auth/view/auth_handler.dart';
 import 'package:chateo_eela_2025_2/app/core/ui/app_navigator.dart';
 import 'package:chateo_eela_2025_2/app/core/ui/theme.dart';
 import 'package:chateo_eela_2025_2/app/di/di.dart';
+import 'package:chateo_eela_2025_2/app/notifications/notifications_service.dart';
 import 'package:chateo_eela_2025_2/chat/view/chat_page.dart';
 import 'package:chateo_eela_2025_2/firebase_options.dart';
 import 'package:chateo_eela_2025_2/home/view/home_page.dart';
@@ -21,6 +22,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GoogleSignIn.instance.initialize();
   initDependencies();
+  await getIt<NotificationsService>().setupNotifications();
   runApp(const MyApp());
 }
 

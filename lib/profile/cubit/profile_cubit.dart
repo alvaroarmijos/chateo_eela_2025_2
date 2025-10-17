@@ -25,7 +25,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     final state = this.state;
     if (state is ProfileStateLoggedIn) {
       await Future.wait([
-        contactsRepository.updateUserStatus(state.user, false),
+        contactsRepository.updateUserStatus(state.user, false, null),
         authRepository.logOut(),
       ]);
     }

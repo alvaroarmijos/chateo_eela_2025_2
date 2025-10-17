@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository.dart';
 import 'package:chateo_eela_2025_2/data/repositories/contacts_repository/contacts_repository.dart';
 import 'package:chateo_eela_2025_2/domain/models/contact.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'home_event.dart';
@@ -36,6 +37,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     final user = await authRepository.user;
     if (user == null) return;
-    contactsRepository.updateUserStatus(user, event.status);
+    final token = await FirebaseMessaging.instance.getToken();
+    contactsRepository.updateUserStatus(user, event.status, token);
   }
 }

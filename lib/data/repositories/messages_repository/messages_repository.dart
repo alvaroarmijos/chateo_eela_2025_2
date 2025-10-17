@@ -7,6 +7,7 @@ abstract class MessagesRepository {
     String message,
     String date,
     String sentBy,
+    String sentTo,
   );
 
   // Obtener la lista de mensajes del chat

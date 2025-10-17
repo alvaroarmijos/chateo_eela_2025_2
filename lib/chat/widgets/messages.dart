@@ -27,6 +27,7 @@ class _MessagesState extends State<Messages> {
   Widget build(BuildContext context) {
     return BlocConsumer<ChatBloc, ChatState>(
       listener: (context, state) {
+        if (state.messages.isEmpty) return;
         SchedulerBinding.instance.addPostFrameCallback((_) {
           // _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
           _scrollController.animateTo(

@@ -2,10 +2,12 @@ import 'package:chateo_eela_2025_2/app/auth/bloc/auth_bloc.dart';
 import 'package:chateo_eela_2025_2/app/core/ui/ui.dart';
 import 'package:chateo_eela_2025_2/app/core/widgets/chat_avatar.dart';
 import 'package:chateo_eela_2025_2/app/di/di.dart';
+import 'package:chateo_eela_2025_2/app/notifications/notifications_service.dart';
 import 'package:chateo_eela_2025_2/data/repositories/auth_repository/auth_repository.dart';
 import 'package:chateo_eela_2025_2/data/repositories/contacts_repository/contacts_repository.dart';
 import 'package:chateo_eela_2025_2/home/bloc/home_bloc.dart';
 import 'package:chateo_eela_2025_2/home/widgets/widgets.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,6 +38,10 @@ class _HomePageViewState extends State<HomePageView> {
   void initState() {
     super.initState();
     context.read<HomeBloc>().add(UpdateUserStatusEvent(status: true));
+
+    FirebaseMessaging.onMessage.listen((remoteMessage) {
+      getIt<NotificationsService>().showNotification(remoteMessage);
+    });
   }
 
   @override

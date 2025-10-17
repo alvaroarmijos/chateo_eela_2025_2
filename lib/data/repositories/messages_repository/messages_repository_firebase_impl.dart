@@ -11,11 +11,13 @@ class MessagesRepositoryFirebaseImpl extends MessagesRepository {
     String message,
     String date,
     String sentBy,
+    String sentTo,
   ) {
     return _firebaseDatabase.ref('chats').child(chatId).push().set({
       'message': message,
       'messageDate': date,
       'sentBy': sentBy,
+      'sentTo': sentTo,
     });
   }
 
@@ -29,6 +31,7 @@ class MessagesRepositoryFirebaseImpl extends MessagesRepository {
               message: element['message'],
               messageDate: DateTime.parse(element["messageDate"]),
               sentBy: element['sentBy'],
+              sentTo: element['sentTo'],
             );
           }).toList() ??
           [];

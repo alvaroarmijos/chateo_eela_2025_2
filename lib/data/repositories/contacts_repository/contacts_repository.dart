@@ -6,5 +6,5 @@ abstract class ContactsRepository {
   Stream<List<Contact>> getContacts();
 
   // Actualizar la info del usuario en los contactos
-  Future<void> updateUserStatus(User user, bool status);
+  Future<void> updateUserStatus(User user, bool status, String? token);
 }
