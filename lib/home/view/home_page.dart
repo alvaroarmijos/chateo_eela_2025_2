@@ -39,6 +39,11 @@ class _HomePageViewState extends State<HomePageView> {
     super.initState();
     context.read<HomeBloc>().add(UpdateUserStatusEvent(status: true));
 
+    FirebaseMessaging.onMessageOpenedApp.listen((remoteMessage) {
+      // Aqui realizar la navegacion a la pantalla de detalle del chat
+      // Navigator.pushNamed(context, routeName)
+    });
+
     FirebaseMessaging.onMessage.listen((remoteMessage) {
       getIt<NotificationsService>().showNotification(remoteMessage);
     });
